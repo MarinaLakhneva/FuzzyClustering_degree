@@ -12,4 +12,4 @@
 #
 #
 # frame_ambiguity = pd.DataFrame(ambiguity)
-# frame_ambiguity.to_csv('ambiguityClasters.csv', index=False, header=False)
+# frame_ambiguity.to_csv('ambiguityClasters.csv', indexClusterization=False, header=False)
