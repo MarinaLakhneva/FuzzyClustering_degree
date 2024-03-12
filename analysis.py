@@ -54,17 +54,28 @@ def info(k):
         elif (ambiguity[i] == 3):
             count_ambiguity[2] += 1
             print(i, " | ambiguity = 3:", spike[i])
-            print("OpenAngle,CVD,AverageDistance,LengthVolumeRatio,LengthAreaRatio,JunctionArea,Length,Area,Volume,ConvexHullVolume,ConvexHullRatio")
-            print([dataset_11[g, i] for g in range(dataset_11.shape[0])])
         elif (ambiguity[i] == 4):
             count_ambiguity[3] += 1
             print(i, " | ambiguity = 4:", spike[i])
         elif (ambiguity[i] == 5):
             count_ambiguity[4] += 1
             print(i, " | ambiguity = 5:", spike[i])
+            print("OpenAngle,CVD,AverageDistance,LengthVolumeRatio,LengthAreaRatio,JunctionArea,Length,Area,Volume,ConvexHullVolume,ConvexHullRatio")
+            print([dataset_11[g, i] for g in range(dataset_11.shape[0])])
         elif (ambiguity[i] == 6):
             count_ambiguity[5] += 1
             print(i, " | ambiguity = 6:", spike[i])
+            print("OpenAngle,CVD,AverageDistance,LengthVolumeRatio,LengthAreaRatio,JunctionArea,Length,Area,Volume,ConvexHullVolume,ConvexHullRatio")
+            print([dataset_11[g, i] for g in range(dataset_11.shape[0])])
+        elif (ambiguity[i] == 7):
+            count_ambiguity[6] += 1
+            print(i, " | ambiguity = 7:", spike[i])
+            print("OpenAngle,CVD,AverageDistance,LengthVolumeRatio,LengthAreaRatio,JunctionArea,Length,Area,Volume,ConvexHullVolume,ConvexHullRatio")
+            print([dataset_11[g, i] for g in range(dataset_11.shape[0])])
+        elif (ambiguity[i] == 8):
+            count_ambiguity[7] += 1
+            print(i, " | ambiguity = 8:", spike[i])
+
 
     print("count_ambiguity:")
     for j in range(0, k):
@@ -102,6 +113,10 @@ def info(k):
     membership_5_number = []
     membership_6 = []
     membership_6_number = []
+    membership_7 = []
+    membership_7_number = []
+    membership_8 = []
+    membership_8_number = []
     cluster = -1
     for i in range(0, number_of_elements):
         max = 0.0
@@ -136,6 +151,14 @@ def info(k):
             count[cluster] += 1
             membership_6.append(max)
             membership_6_number.append(i)
+        elif cluster == 6:
+            count[cluster] += 1
+            membership_7.append(max)
+            membership_7_number.append(i)
+        elif cluster == 7:
+            count[cluster] += 1
+            membership_8.append(max)
+            membership_8_number.append(i)
         y_2[i] = membership
     print("количество шипиков в каждом кластере", count)
 
@@ -165,6 +188,12 @@ def info(k):
     cluster4_num = []
     cluster5 = []
     cluster5_num = []
+    cluster6 = []
+    cluster6_num = []
+    cluster7 = []
+    cluster7_num = []
+    cluster8 = []
+    cluster8_num = []
 
     cluster_num = -1
     for i in range(0, number_of_elements):
@@ -188,6 +217,15 @@ def info(k):
         elif cluster_num == 4:
             cluster5.append(max_m)
             cluster5_num.append(i)
+        elif cluster_num == 5:
+            cluster6.append(max_m)
+            cluster6_num.append(i)
+        elif cluster_num == 6:
+            cluster7.append(max_m)
+            cluster7_num.append(i)
+        elif cluster_num == 7:
+            cluster8.append(max_m)
+            cluster8_num.append(i)
 
     print(cluster1)
     print(cluster1_num)
@@ -198,22 +236,37 @@ def info(k):
     print(cluster3)
     print(cluster3_num)
 
-    impotant = []
-    for o in range(0, 3):
-        max__3 = 0.0
-        count_3 = 0
-        for p in range(0, len(cluster3)):
-            if(cluster3[p] > max__3):
-                max__3 = cluster3[p]
-                count_3 = p
-        print(max__3)
-        impotant.append(cluster3_num[count_3])
-        cluster3.pop(count_3)
-        cluster3_num.pop(count_3)
-    print(impotant)
-    print(spike[impotant[0]])
-    print(spike[impotant[1]])
-    print(spike[impotant[2]])
-    print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
+    print(cluster4)
+    print(cluster4_num)
+
+    print(cluster5)
+    print(cluster5_num)
+
+    print(cluster6)
+    print(cluster6_num)
+
+    print(cluster7)
+    print(cluster7_num)
+
+    print(cluster8)
+    print(cluster8_num)
+
+    # impotant = []
+    # for o in range(0, 3):
+    #     max__3 = 0.0
+    #     count_3 = 0
+    #     for p in range(0, len(cluster3)):
+    #         if(cluster3[p] > max__3):
+    #             max__3 = cluster3[p]
+    #             count_3 = p
+    #     print(max__3)
+    #     impotant.append(cluster3_num[count_3])
+    #     cluster3.pop(count_3)
+    #     cluster3_num.pop(count_3)
+    # print(impotant)
+    # print(spike[impotant[0]])
+    # print(spike[impotant[1]])
+    # print(spike[impotant[2]])
+    # print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])

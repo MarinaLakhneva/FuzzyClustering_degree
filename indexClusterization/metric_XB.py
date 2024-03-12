@@ -33,4 +33,5 @@ def XB(k):
 
         V_xb = (1/n) * sum/min
         m_XB.append(V_xb)
+    print(m_XB)
     return m_XB

@@ -1,4 +1,5 @@
 import pandas as pd
+from FCM.FCM import fcm
 
 path_FCM = "FCM/clusters_"
 path_PCA = "PCA/clusters_"
@@ -39,4 +40,5 @@ def PBMF(k):
 
         V_pbmf = (1/k) * (E1 * max)/sum
         m_PBMF.append(V_pbmf)
+    print(m_PBMF)
     return m_PBMF

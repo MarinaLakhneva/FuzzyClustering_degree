@@ -11,4 +11,5 @@ def DWSVF(k, XB, PBMF, MPC):
         arg3 = ((sum-(1/MPC[c]))/sum) * 1/MPC[c]
         dwsvf = arg1+arg2+arg3
         m_DWSVF.append(dwsvf)
+    print(m_DWSVF)
     return m_DWSVF
