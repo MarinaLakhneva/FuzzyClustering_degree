@@ -27,7 +27,7 @@ def pca(k):
 
     from sklearn.decomposition import PCA
 
-    pca = PCA(n_components=2)
+    pca = PCA(n_components=3)
     principalComponents = pca.fit_transform(data)
 
     result = pd.DataFrame(principalComponents)

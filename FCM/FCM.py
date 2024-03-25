@@ -97,30 +97,31 @@ def fcm(k):
     # metrics_d.to_csv("data/metrics_update.csv", indexClusterization=False)
 
 
-    eps = 0.0001
+    eps = 0.001
     degree_of_fuzziness = 2
-    # metrics = pd.read_csv("data/metrics_update.csv")
-    # OldChordDistribution_metric = metrics['OldChordDistribution']
-    #
-    # dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
-    #
-    # for i in range(0, len(OldChordDistribution_metric)):
-    #     for j in range(0, len(OldChordDistribution_metric[0].split())):
-    #         dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
-    #
-    # dataset_for_PCA = pd.DataFrame(dataset)
-    # dataset_for_PCA.to_csv(path_FCM+str(k)+"/dataset.csv", index=False, header=False)
-    #
-    # n = len(OldChordDistribution_metric)
-    # d = len(OldChordDistribution_metric[0].split())
+    metrics = pd.read_csv("data/metrics_update.csv")
+    OldChordDistribution_metric = metrics['OldChordDistribution']
 
-    from ucimlrepo import fetch_ucirepo
+    dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
 
-    iris = fetch_ucirepo(id=53)
+    for i in range(0, len(OldChordDistribution_metric)):
+        for j in range(0, len(OldChordDistribution_metric[0].split())):
+            dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
 
-    dataset = iris.data.features.values.transpose()
-    n = 150
-    d = 4
+    dataset_for_PCA = pd.DataFrame(dataset)
+    dataset_for_PCA.to_csv(path_FCM+str(k)+"/dataset.csv", index=False, header=False)
+
+    n = len(OldChordDistribution_metric)
+    d = len(OldChordDistribution_metric[0].split())
+
+    # датасет для проверки метрик достоверности кластеризации
+    # from ucimlrepo import fetch_ucirepo
+    #
+    # iris = fetch_ucirepo(id=53)
+    #
+    # dataset = iris.data.features.values.transpose()
+    # n = 150
+    # d = 4
 
     # метрики без хорд
     # metrics = pd.read_csv("data/metrics_update.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
