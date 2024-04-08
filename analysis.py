@@ -151,7 +151,7 @@ def minMax_membership(k, n, spike, result):
         print(eval(f'num_{j + 1}_min'), ' | ', "min = ", eval(f'min_{j + 1}'), ' | ', spike[eval(f'num_{j + 1}_min')])
         print(eval(f'num_{j + 1}_max'), ' | ', "max = ", eval(f'max_{j + 1}'), ' | ', spike[eval(f'num_{j + 1}_max')], )
 
-def dvkmfnv(k, n, result):
+def clearСlustering(k, n, result, dataset_11):
     cluster1 = []
     cluster1_num = []
     cluster2 = []
@@ -164,10 +164,22 @@ def dvkmfnv(k, n, result):
     cluster5_num = []
     cluster6 = []
     cluster6_num = []
-    cluster7 = []
-    cluster7_num = []
-    cluster8 = []
-    cluster8_num = []
+    # cluster7 = []
+    # cluster7_num = []
+    # cluster8 = []
+    # cluster8_num = []
+    # cluster9 = []
+    # cluster9_num = []
+    # cluster10 = []
+    # cluster10_num = []
+    # cluster11 = []
+    # cluster11_num = []
+    # cluster12 = []
+    # cluster12_num = []
+    # cluster13 = []
+    # cluster13_num = []
+    # cluster14 = []
+    # cluster14_num = []
 
     cluster_num = -1
     for i in range(0, n):
@@ -194,27 +206,136 @@ def dvkmfnv(k, n, result):
         elif cluster_num == 5:
             cluster6.append(max_m)
             cluster6_num.append(i)
-        elif cluster_num == 6:
-            cluster7.append(max_m)
-            cluster7_num.append(i)
-        elif cluster_num == 7:
-            cluster8.append(max_m)
-            cluster8_num.append(i)
+        # elif cluster_num == 6:
+        #     cluster7.append(max_m)
+        #     cluster7_num.append(i)
+        # elif cluster_num == 7:
+        #     cluster8.append(max_m)
+        #     cluster8_num.append(i)
+        # elif cluster_num == 8:
+        #     cluster9.append(max_m)
+        #     cluster9_num.append(i)
+        # elif cluster_num == 9:
+        #     cluster10.append(max_m)
+        #     cluster10_num.append(i)
+        # elif cluster_num == 10:
+        #     cluster11.append(max_m)
+        #     cluster11_num.append(i)
+        # elif cluster_num == 11:
+        #     cluster12.append(max_m)
+        #     cluster12_num.append(i)
+        # elif cluster_num == 12:
+        #     cluster13.append(max_m)
+        #     cluster13_num.append(i)
+        # elif cluster_num == 13:
+        #     cluster14.append(max_m)
+        #     cluster14_num.append(i)
 
+    print("1", len(cluster1_num))
     print(cluster1)
     print(cluster1_num)
 
+    print("2", len(cluster2_num))
     print(cluster2)
     print(cluster2_num)
 
+    print("3", len(cluster3_num))
     print(cluster3)
     print(cluster3_num)
 
+    print("4", len(cluster4_num))
     print(cluster4)
     print(cluster4_num)
 
+    print("5", len(cluster5_num))
     print(cluster5)
     print(cluster5_num)
+
+    print("6", len(cluster6_num))
+    print(cluster6)
+    print(cluster6_num)
+
+    # print("7", len(cluster7_num))
+    # print(cluster7)
+    # print(cluster7_num)
+
+    # print("8", len(cluster8_num))
+    # print(cluster8)
+    # print(cluster8_num)
+    #
+    # print("9", len(cluster9_num))
+    # print(cluster9)
+    # print(cluster9_num)
+    #
+    # print("10", len(cluster10_num))
+    # print(cluster10)
+    # print(cluster10_num)
+    #
+    # print("11", len(cluster11_num))
+    # print(cluster11)
+    # print(cluster11_num)
+    #
+    # print("12", len(cluster12_num))
+    # print(cluster12)
+    # print(cluster12_num)
+    #
+    # print("13", len(cluster13_num))
+    # print(cluster13)
+    # print(cluster13_num)
+    #
+    # print("14", len(cluster14_num))
+    # print(cluster14)
+    # print(cluster14_num)
+    #
+    print(len(cluster1_num)+len(cluster2_num)+len(cluster3_num)+
+          len(cluster4_num)+len(cluster5_num)+len(cluster6_num))
+          #len(cluster7_num))+len(cluster8_num)+len(cluster9_num)+
+          # len(cluster10_num)+len(cluster11_num)+len(cluster12_num)+len(cluster13_num)+len(cluster14_num))
+
+
+    met_11_1 = []
+    met_11_2 = []
+    met_11_3 = []
+    met_11_4 = []
+    met_11_5 = []
+    met_11_6 = []
+    # met_11_7 = []
+
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[10, cluster1_num[n_11]]]
+        met_11_1 = np.concatenate((met_11_1, arr))
+    for n_11 in range(0, len(cluster2_num)):
+        arr = [dataset_11[10, cluster2_num[n_11]]]
+        met_11_2 = np.concatenate((met_11_2, arr))
+    for n_11 in range(0, len(cluster3_num)):
+        arr = [dataset_11[10, cluster3_num[n_11]]]
+        met_11_3 = np.concatenate((met_11_3, arr))
+    for n_11 in range(0, len(cluster4_num)):
+        arr = [dataset_11[10, cluster4_num[n_11]]]
+        met_11_4 = np.concatenate((met_11_4, arr))
+    for n_11 in range(0, len(cluster5_num)):
+        arr = [dataset_11[10, cluster5_num[n_11]]]
+        met_11_5 = np.concatenate((met_11_5, arr))
+    for n_11 in range(0, len(cluster6_num)):
+        arr = [dataset_11[10, cluster6_num[n_11]]]
+        met_11_6 = np.concatenate((met_11_6, arr))
+    # for n_11 in range(0, len(cluster7_num)):
+    #     arr = [dataset_11[10, cluster7_num[n_11]]]
+    #     met_11_7 = np.concatenate((met_11_7, arr))
+
+
+    my_dict = {'cluster 1': met_11_1, 'cluster 2': met_11_2, 'cluster 3': met_11_3,
+               'cluster 4': met_11_4, 'cluster 5': met_11_5, 'cluster 6': met_11_6}
+               # 'cluster 7': met_11_7}
+    #OpenAngle, CVD, AverageDistance, LengthVolumeRatio, LengthAreaRatio,
+    #JunctionArea, Length, Area, Volume, ConvexHullVolume, ConvexHullRatio
+    fig, ax = plt.subplots()
+    ax.boxplot(my_dict.values())
+    plt.title('ConvexHullRatio')
+    ax.set_xticklabels(my_dict.keys())
+    plt.savefig(
+        '/Users/Marina/degree_ML/boxPlot/' + str(11) + '.png')
+    plt.show()
 
     # impotant = []
     # for o in range(0, 3):
@@ -237,21 +358,27 @@ def dvkmfnv(k, n, result):
     # print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
 
 def general(k):
-    metrics = pd.read_csv("data/metrics_update.csv")
-    metric = metrics['OldChordDistribution']
+    # metrics = pd.read_csv("data/metrics_update.csv")
+    # metric = metrics['OldChordDistribution']
+    #
+    # dataset = np.zeros((len(metric[0].split()), len(metric)))
+    # for i in range(0, len(metric)):
+    #     for j in range(0, len(metric[0].split())):
+    #         dataset[j][i] = list(map(float, metric[i][1:-1].split()))[j]
+    #
+    # n = len(metric)
 
-    dataset = np.zeros((len(metric[0].split()), len(metric)))
-    for i in range(0, len(metric)):
-        for j in range(0, len(metric[0].split())):
-            dataset[j][i] = list(map(float, metric[i][1:-1].split()))[j]
+    metrics = pd.read_csv("data/metrics_for_classic.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
+    dataset_m = pd.DataFrame(metrics)
+    dataset_m.to_csv(path_FCM + str(k) + "/dataset.csv", index=False, header=False)
+    dataset = pd.read_csv(path_FCM + str(k) + '/dataset.csv', header=None, index_col=None).values
 
-    n = len(metric)
+    n = dataset.shape[1]
+    print(n)
+    d = dataset.shape[0]
+    print(d)
 
-    # 11-ть метрик
-    # dataset = pd.read_csv(path_FCM + str(number_of_clusters) + '/dataset.csv', header=None, index_col=None).values
-    # number_of_elements = dataset.shape[1]
-
-    metrics_11 = pd.read_csv("data/metrics_update.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
+    metrics_11 = pd.read_csv("data/metrics_for_classic.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
 
     dataset_m = pd.DataFrame(metrics_11)
     dataset_m.to_csv(path_FCM+str(k)+"/dataset_11.csv", header=False, index=False)
@@ -260,13 +387,10 @@ def general(k):
 
     result = pd.read_csv(path_FCM+str(k)+'/FCM.csv', header=None, index_col=None).values
 
-    metrics = pd.read_csv("data/metrics_update.csv")
+    metrics = pd.read_csv("data/metrics_for_classic.csv")
     spike = metrics['Spine File']
-
-
-
 #-----------------------------------------------------------------------------------------------------------------------
-    ambiguitySpikes(k, n, result, dataset_11, spike)
-    probability_40_70_80_90(k, n, result)
-    minMax_membership(k, n, spike, result)
-    dvkmfnv(k, n, result)
+    # ambiguitySpikes(k, n, result, dataset_11, spike)
+    # probability_40_70_80_90(k, n, result)
+    # minMax_membership(k, n, spike, result)
+    clearСlustering(k, n, result, dataset_11)

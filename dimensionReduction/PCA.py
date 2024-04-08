@@ -3,9 +3,9 @@ from sklearn.preprocessing import StandardScaler
 import numpy as geek
 
 path_FCM = "FCM/clusters_"
-path_PCA = "PCA/clusters_"
+path_PCA = "dimensionReduction/PCA/clusters_"
 
-def pca(k):
+def p(k):
     filename1_in = path_FCM+str(k)+"/cluster_center.csv"
     filename2_in = path_FCM+str(k)+"/dataset.csv"
     filename1_out = path_PCA+str(k)+"/datasetPLUScenter_PCA.csv"
@@ -32,4 +32,3 @@ def pca(k):
 
     result = pd.DataFrame(principalComponents)
     result.to_csv(filename2_out, index=False, header=False)
-    return result

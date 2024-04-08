@@ -31,6 +31,7 @@ def PBMF(k):
                     max = dist
                     dist = 0.0
 
+        fcm(1)
         u1 = pd.read_csv(path_FCM + str(1) + "/FCM.csv", header=None, index_col=None).values
         distance1 = pd.read_csv(path_FCM + str(1) + "/distance.csv", header=None, index_col=None).values
         E1 = 0.0

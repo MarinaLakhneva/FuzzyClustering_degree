@@ -7,7 +7,6 @@ eb = []
 
 def elbow(k):
     for c in range(2, k+1):
-        # fcm(c)
         dist = pd.read_csv(path_FCM + str(c) + "/distance.csv", header=None, index_col=None).values
         n = len(dist[0])
 

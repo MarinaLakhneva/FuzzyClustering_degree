@@ -14,6 +14,12 @@ def intraClusterDistances_sumsSquares(k, path_FCM):
             6: 0,
             7: 0,
             8: 0,
+            9: 0,
+            10: 0,
+            11: 0,
+            12: 0,
+            13: 0,
+            14: 0,
         }
         count = {
             1: 0,
@@ -24,6 +30,12 @@ def intraClusterDistances_sumsSquares(k, path_FCM):
             6: 0,
             7: 0,
             8: 0,
+            9: 0,
+            10: 0,
+            11: 0,
+            12: 0,
+            13: 0,
+            14: 0,
         }
 
 
