@@ -358,39 +358,16 @@ def clearСlustering(k, n, result, dataset_11):
     # print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
 
 def general(k):
-    # metrics = pd.read_csv("data/metrics_update.csv")
-    # metric = metrics['OldChordDistribution']
-    #
-    # dataset = np.zeros((len(metric[0].split()), len(metric)))
-    # for i in range(0, len(metric)):
-    #     for j in range(0, len(metric[0].split())):
-    #         dataset[j][i] = list(map(float, metric[i][1:-1].split()))[j]
-    #
-    # n = len(metric)
 
-    metrics = pd.read_csv("data/metrics_for_classic.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
-    dataset_m = pd.DataFrame(metrics)
-    dataset_m.to_csv(path_FCM + str(k) + "/dataset.csv", index=False, header=False)
     dataset = pd.read_csv(path_FCM + str(k) + '/dataset.csv', header=None, index_col=None).values
-
     n = dataset.shape[1]
-    print(n)
-    d = dataset.shape[0]
-    print(d)
-
-    metrics_11 = pd.read_csv("data/metrics_for_classic.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
-
-    dataset_m = pd.DataFrame(metrics_11)
-    dataset_m.to_csv(path_FCM+str(k)+"/dataset_11.csv", header=False, index=False)
-    dataset_11 = pd.read_csv(path_FCM+str(k)+'/dataset_11.csv', header=None, index_col=None).values
-
 
     result = pd.read_csv(path_FCM+str(k)+'/FCM.csv', header=None, index_col=None).values
 
     metrics = pd.read_csv("data/metrics_for_classic.csv")
     spike = metrics['Spine File']
 #-----------------------------------------------------------------------------------------------------------------------
-    # ambiguitySpikes(k, n, result, dataset_11, spike)
+    # ambiguitySpikes(k, n, result, dataset, spike)
     # probability_40_70_80_90(k, n, result)
     # minMax_membership(k, n, spike, result)
-    clearСlustering(k, n, result, dataset_11)
+    clearСlustering(k, n, result, dataset)

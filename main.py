@@ -21,12 +21,10 @@ path_FCM = "FCM/clusters_"
 # d - размерность вектора данных 1<l<d
 # n - мощность выборки
 
-def main(k):
-    # general(k)
-    # charts(k)
-    fcm(k)
+def main(k, dataset, n, d):
 #-----------------------------------------------------------------------------------------------------------------------
-    # groups = ['Stubby', 'Mushroom', 'Thin', 'Filopodia', 'Outlier']
+    # pie
+    # ['Stubby', 'Mushroom', 'Thin', 'Filopodia', 'Outlier']
     # groups = ['Filopodia', 'Thin']
     # data = [1, 7]
     #
@@ -37,51 +35,24 @@ def main(k):
     # plt.show()
 #-----------------------------------------------------------------------------------------------------------------------
     # MLS
+
     # x = np.array([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
     # x6 = np.array([5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
-    # x7 = np.array([6, 7, 8, 9, 10, 11, 12, 13, 14])
-    # x8 = np.array([7, 8, 9, 10, 11, 12, 13, 14])
-    # x9 = np.array([8, 9, 10, 11, 12, 13, 14])
-    # x10 = np.array([9, 10, 11, 12, 13, 14])
-    # x11= np.array([10, 11, 12, 13, 14])
-    #
-    # # chord
-    # # eb = [4282.021384349321, 3592.405990489654, 3221.8847263472762, 2907.229991464451, 2679.7623652262723, 2557.6134559130246, 2457.30493860853, 2455.918789743303, 2377.9686958697803, 2277.3905726868243, 2196.163986070705, 2142.7520524755955, 2108.7520645006703]
-    # eb = [10689.534710343383, 5964.837474035636, 3666.1939016407855, 2888.6652232325664, 2231.585429729597, 1536.7552805086768, 1216.3228863746704, 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb6 = [2888.6652232325664, 2231.585429729597, 1536.7552805086768, 1216.3228863746704, 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb7 = [ 2231.585429729597, 1536.7552805086768, 1216.3228863746704, 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb8 = [ 1536.7552805086768, 1216.3228863746704, 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb9 = [ 1216.3228863746704, 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb10 = [ 1100.6351354251672, 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    # eb11 = [ 978.5885903378548, 1274.3526712948992, 836.7357667966131, 809.2843418925468, 765.6028499812267]
-    #
-    #
+
+    # eb = []
+    # eb6 = []
+
     # A = np.vstack([x, np.ones(len(x))]).T
     # m, c = np.linalg.lstsq(A, eb, rcond=None)[0]
     # A6 = np.vstack([x6, np.ones(len(x6))]).T
     # m6, c6 = np.linalg.lstsq(A6, eb6, rcond=None)[0]
-    # A7 = np.vstack([x7, np.ones(len(x7))]).T
-    # m7, c7 = np.linalg.lstsq(A7, eb7, rcond=None)[0]
-    # A8 = np.vstack([x8, np.ones(len(x8))]).T
-    # m8, c8 = np.linalg.lstsq(A8, eb8, rcond=None)[0]
-    # A9 = np.vstack([x9, np.ones(len(x9))]).T
-    # m9, c9 = np.linalg.lstsq(A9, eb9, rcond=None)[0]
-    # A10 = np.vstack([x10, np.ones(len(x10))]).T
-    # m10, c10 = np.linalg.lstsq(A10, eb10, rcond=None)[0]
-    # A11 = np.vstack([x11, np.ones(len(x11))]).T
-    # m11, c11 = np.linalg.lstsq(A11, eb11, rcond=None)[0]
-    #
+
     # plt.axvline(x=7, color="black", linestyle='dashed')
     # plt.plot(x, eb, color="green", label='wcss', markersize=5, marker="D", alpha=0.5)
+
     # plt.plot(x, m * x + c, 'b', label='MLS', linestyle='dashed')
     # plt.plot(x6, m6 * x6 + c6, 'm', label='MLS 5-14', linestyle='dashed')
-    # plt.plot(x7, m7 * x7 + c7, 'r', label='MLS 6-14', linestyle='dashed')
-    # # plt.plot(x8, m8 * x8 + c8, 'y', linestyle='dashed')
-    # # plt.plot(x9, m9 * x9 + c9, 'g', linestyle='dashed')
-    # # plt.plot(x10, m10 * x10 + c10, 'pink', linestyle='dashed')
-    # # plt.plot(x11, m11 * x11 + c11, 'm',  linestyle='dashed')
-    #
-    #
+
     # plt.grid(True)
     # plt.xlabel("cluster number", fontweight='bold', fontsize="large")
     # plt.ylabel("wcss", fontweight='bold', fontsize="large")
@@ -94,17 +65,9 @@ def main(k):
     # время работы алгоритма
     # import datetime
     # for j in range(1, k + 1):
-    #     # фиксируем и выводим время старта работы кода
     #     start = datetime.datetime.now()
-    #     print('Время старта: ' + str(start))
-    #
-    #     # код, время работы которого измеряем
     #     fcm(j)
-    #     #фиксируем и выводим время окончания работы кода
     #     finish = datetime.datetime.now()
-    #     print('Время окончания: ' + str(finish))
-    #
-    #     # вычитаем время старта из времени окончания
     #     print('Время работы: ' + str(finish - start))
 #-----------------------------------------------------------------------------------------------------------------------
     # метод локтя
@@ -127,11 +90,7 @@ def main(k):
     # ax1.tick_params(axis='y', labelcolor=color)
     # plt.grid(True)
 
-
-    # на хордах
-    # fitTime = [2, 5, 14, 36, 27, 139, 29, 75, 54, 102, 161, 164, 84]
-    # на 11
-    # fitTime = [0.052, 0.059, 1.017, 1.095, 3.017, 3.091, 4.081, 4.070, 4.098, 5.037, 20.022, 7.044, 12.004]
+    # fitTime = []
     # model = np.poly1d(np.polyfit(x, fitTime, 2))
     # ax2 = ax1.twinx()
     # color = 'tab:red'
@@ -193,13 +152,70 @@ def main(k):
     # plt.xlabel("cluster number", fontweight='bold', fontsize="large")
     # plt.show()
 
-    # шипики, которые портили статистику
+#-----------------------------------------------------------------------------------------------------------------------
+    # шипики, которые портили статистику на классике
     # 304 | 0.025 0.025 0.1 dataset\5-2\spine_10.off шипик принадлежал 5
     # 122 | 0.025 0.025 0.1 dataset\3_full_res (1)\spine_6.off шипик принадлежал 6
-
+    # обновленный файл без них: metrics_for_classic.csv
+#-----------------------------------------------------------------------------------------------------------------------
+#     for j in range(1, k + 1):
+#         fcm(j, dataset, n, d)
+#     fcm(k, dataset, n, d)
 
 if __name__ == '__main__':
-    k = 3
-    main(k)
+    # # удалила шипики которых нет в 0.025 0.025 0.1 dataset
+    # import glob
+    #
+    # metrics_d = pd.read_csv("data/metrics.csv")
+    # print(len(metrics_d))
+    # to_delete = []
+    # for indexClusterization, p in enumerate(metrics_d['Spine File'].to_numpy()):
+    #     if p.replace("/", "\\") not in glob.glob('0.025 0.025 0.1 dataset/*/*.off', recursive=True):
+    #         to_delete.append(indexClusterization)
+    #
+    # for n_drop in range(0, len(to_delete)):
+    #     metrics_d = metrics_d.drop(to_delete[n_drop])
+    # metrics_d.to_csv("data/metrics_update.csv", indexClusterization=False)
+
+    # хорды
+    metrics = pd.read_csv("data/metrics_update.csv")
+    OldChordDistribution_metric = metrics['OldChordDistribution']
+
+    # dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
+    # for i in range(0, len(OldChordDistribution_metric)):
+    #     for j in range(0, len(OldChordDistribution_metric[0].split())):
+    #         dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
+    #
+    # dataset_for_PCA = pd.DataFrame(dataset)
+    # dataset_for_PCA.to_csv("data/dataset.csv", index=False, header=False)
+    #
+    # dataset = pd.read_csv('data/dataset.csv', header=None, index_col=None).values
+
+    n = len(OldChordDistribution_metric)
+    d = len(OldChordDistribution_metric[0].split())
+
+    # классика
+    # metrics = pd.read_csv("data/metrics_for_classic.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
+    # dataset_for_PCA = pd.DataFrame(metrics)
+    # dataset_for_PCA.to_csv("data/dataset.csv", index=False, header=False)
+    # dataset = pd.read_csv('data/dataset.csv', header=None, index_col=None).values
+
+    # n = dataset.shape[1]
+    # print(n)
+    # d = dataset.shape[0]
+    # print(d)
+
+    # датасет для проверки метрик достоверности кластеризации
+    # # from ucimlrepo import fetch_ucirepo
+    # #
+    # # iris = fetch_ucirepo(id=53)
+    # #
+    # # dataset = iris.data.features.values.transpose()
+    # # n = 150
+    # # d = 4
+
+    dataset = pd.read_csv('data/dataset.csv', header=None, index_col=None).values
+    k = 14
+    main(k, dataset, n, d)
 
 

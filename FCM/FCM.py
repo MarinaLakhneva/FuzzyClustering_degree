@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from scipy.spatial import distance
 
 # k - количество кластеров 1<j<k
 # d - размерность вектора данных 1<l<d
@@ -62,7 +61,6 @@ def distance_bhattacharyya(k, n,  data, c_ij):
 
 def solution(k, n, data, d, table, m, E):
     max = 1000
-    # iteration = 0
 
     while(max > E):
         coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m)
@@ -70,10 +68,6 @@ def solution(k, n, data, d, table, m, E):
         # distance = distance_calculation(k, n, data, d, coordinates, m)
         distance = distance_bhattacharyya(k, n, data, coordinates)
         affiliation = calculating_the_degree_of_affiliation(k, n, m, distance)
-        # if (iteration == 0):
-        #     affiliation_0 = pd.DataFrame(affiliation)
-        #     affiliation_0.to_csv(path_FCM + str(k) + "/affiliation_0.csv", index=False, header=False)
-        #     iteration = 1
 
         max = 0.0
         for j in range(0, k):
@@ -83,70 +77,15 @@ def solution(k, n, data, d, table, m, E):
                     max = difference
         table = affiliation
 
-
     dist = pd.DataFrame(distance)
     dist.to_csv(path_FCM+str(k)+"/distance.csv", index=False, header=False)
-    print(dist)
     return table
 
-
-def fcm(k):
+def fcm(k, dataset, n, d):
     print(k)
-    # # удалила шипики которых нет в 0.025 0.025 0.1 dataset
-    # import glob
-    #
-    # metrics_d = pd.read_csv("data/metrics.csv")
-    # print(len(metrics_d))
-    # to_delete = []
-    # for indexClusterization, p in enumerate(metrics_d['Spine File'].to_numpy()):
-    #     if p.replace("/", "\\") not in glob.glob('0.025 0.025 0.1 dataset/*/*.off', recursive=True):
-    #         to_delete.append(indexClusterization)
-    #
-    # for n_drop in range(0, len(to_delete)):
-    #     metrics_d = metrics_d.drop(to_delete[n_drop])
-    # metrics_d.to_csv("data/metrics_update.csv", indexClusterization=False)
-
 
     eps = 0.001
     degree_of_fuzziness = 2
-
-    # хорды
-    metrics = pd.read_csv("data/metrics_update.csv")
-    OldChordDistribution_metric = metrics['OldChordDistribution']
-    #
-    # dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
-    #
-    # for i in range(0, len(OldChordDistribution_metric)):
-    #     for j in range(0, len(OldChordDistribution_metric[0].split())):
-    #         dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
-    #
-    # dataset_for_PCA = pd.DataFrame(dataset)
-    # dataset_for_PCA.to_csv(path_FCM+str(k)+"/dataset.csv", index=False, header=False)
-
-    dataset = pd.read_csv(path_FCM + str(k) + '/dataset.csv', header=None, index_col=None).values
-
-    n = len(OldChordDistribution_metric)
-    d = len(OldChordDistribution_metric[0].split())
-
-    # классика
-    # metrics = pd.read_csv("data/metrics_update.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
-    # dataset_m = pd.DataFrame(metrics)
-    # dataset_m.to_csv(path_FCM+str(k)+"/dataset.csv", indexClusterization=False, header=False)
-    # dataset = pd.read_csv(path_FCM+str(k)+'/dataset.csv', header=None, index_col=None).values
-    #
-    # n = dataset.shape[1]
-    # print(n)
-    # d = dataset.shape[0]
-    # print(d)
-
-    # датасет для проверки метрик достоверности кластеризации
-    # # from ucimlrepo import fetch_ucirepo
-    # #
-    # # iris = fetch_ucirepo(id=53)
-    # #
-    # # dataset = iris.data.features.values.transpose()
-    # # n = 150
-    # # d = 4
 
     #заполняем таблицу принадлежности случайными значениями
     table_of_accessories = np.random.rand(k, n)
