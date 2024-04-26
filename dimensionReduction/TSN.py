@@ -3,9 +3,17 @@ from sklearn.preprocessing import StandardScaler
 import numpy as geek
 from sklearn.manifold import TSNE
 
-def main(file1_in, file2_in, file1_out, file2_out):
-    file1 = pd.read_csv(file1_in, header=None, index_col=None).values
-    file2 = pd.read_csv(file2_in, header=None, index_col=None).values
+path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
+path_TSN = "C:/Users/Marina/degree_ML/dimensionReduction/TSN/clusters_"
+
+def metricTSN(k):
+    filename1_in = path_FCM+str(k)+"/cluster_center.csv"
+    filename2_in = path_FCM+str(k)+"/dataset.csv"
+    filename1_out = path_TSN+str(k)+"/datasetPLUScenter_TSN.csv"
+    filename2_out = path_TSN+str(k)+"/center_TSN.csv"
+
+    file1 = pd.read_csv(filename1_in, header=None, index_col=None).values
+    file2 = pd.read_csv(filename2_in, header=None, index_col=None).values
 
     f1 = file1.transpose()
     f2 = file2.transpose()
@@ -13,7 +21,7 @@ def main(file1_in, file2_in, file1_out, file2_out):
 
     gfgT = gfg.transpose()
     opa = pd.DataFrame(gfgT)
-    opa.to_csv(file1_out, index=False, header=False)
+    opa.to_csv(filename1_out, index=False, header=False)
 
     data = gfgT.transpose()
     data = StandardScaler().fit_transform(data)
@@ -22,17 +30,7 @@ def main(file1_in, file2_in, file1_out, file2_out):
     projections = tsne.fit_transform(data)
 
     result = pd.DataFrame(projections)
-    result.to_csv(file2_out, index=False, header=False)
-
-
-if __name__ == '__main__':
-    #2
-    k = 3
-    filename1_in = "FCM/clusters_" + str(k) + "/cluster_center.csv"
-    filename2_in = "FCM/clusters_" + str(k) + "/dataset.csv"
-    filename1_out = "TSN/clusters_"+str(k)+"/datasetPLUScenter_TSN.csv"
-    filename2_out = "TSN/clusters_"+str(k)+"/center_TSN.csv"
-    main(filename1_in, filename2_in, filename1_out, filename2_out)
+    result.to_csv(filename2_out, index=False, header=False)
 
 
 

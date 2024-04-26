@@ -2,14 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from FCM.FCM import fcm
-from dimensionReduction.PCA import p
+from dimensionReduction.PCA import metricPCA
 from analysis import general
-from charts import charts
 from indexClusterization.elbow import elbow
+
 from indexClusterization.metric_PC import PC
 from indexClusterization.metric_XB import XB
 from indexClusterization.metric_PBMF import PBMF
 from indexClusterization.F_DWSVF import DWSVF
+
 from indexClusterization.interClusterDist import interClusterDistance
 from indexClusterization.interClusterDist_ss import interClusterDistance_sumsSquares
 from indexClusterization.intraClusterDist_ss import intraClusterDistances_sumsSquares
@@ -23,6 +24,7 @@ path_FCM = "FCM/clusters_"
 def main(k):
     # general(k)
     # charts(k)
+    fcm(k)
 #-----------------------------------------------------------------------------------------------------------------------
     # groups = ['Stubby', 'Mushroom', 'Thin', 'Filopodia', 'Outlier']
     # groups = ['Filopodia', 'Thin']
@@ -197,7 +199,7 @@ def main(k):
 
 
 if __name__ == '__main__':
-    k = 6
+    k = 3
     main(k)
 
 

@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
+from scipy.spatial import distance
 
 # k - количество кластеров 1<j<k
 # d - размерность вектора данных 1<l<d
 # n - мощность выборки
 
 path_FCM = "FCM/clusters_"
-
 
 def calculating_the_degree_of_affiliation(k, n, m, dist):
     u_ij = np.zeros((k, n))
@@ -49,22 +49,31 @@ def distance_calculation(k, n,  data, d, c_ij, m):
             dist[j][i] = np.sqrt(sum)
     return dist
 
+def normalize(h_):
+    return h_ / np.sum(h_)
+
+def distance_bhattacharyya(k, n,  data, c_ij):
+    dist = np.zeros((k, n))
+    for j in range(0, k):
+        for i in range(0, n):
+            res = 1 - np.sum(np.sqrt(np.multiply(normalize(data[:, i]), normalize(c_ij[:, j]))))
+            dist[j][i] = res
+    return dist
+
 def solution(k, n, data, d, table, m, E):
     max = 1000
-    iteration = 0
+    # iteration = 0
 
     while(max > E):
-        coordinates = 0
-        distance = 0
-        affiliation = 0
-
         coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m)
-        distance = distance_calculation(k, n, data, d, coordinates, m)
+        # ВЫБЕРИ МЕТОД ПО КОТОРОМУ ВЫЧИСЛЯТЬ РАССТОЯНИЯ
+        # distance = distance_calculation(k, n, data, d, coordinates, m)
+        distance = distance_bhattacharyya(k, n, data, coordinates)
         affiliation = calculating_the_degree_of_affiliation(k, n, m, distance)
-        if (iteration == 0):
-            affiliation_0 = pd.DataFrame(affiliation)
-            affiliation_0.to_csv(path_FCM + str(k) + "/affiliation_0.csv", index=False, header=False)
-            iteration = 1
+        # if (iteration == 0):
+        #     affiliation_0 = pd.DataFrame(affiliation)
+        #     affiliation_0.to_csv(path_FCM + str(k) + "/affiliation_0.csv", index=False, header=False)
+        #     iteration = 1
 
         max = 0.0
         for j in range(0, k):
@@ -77,6 +86,7 @@ def solution(k, n, data, d, table, m, E):
 
     dist = pd.DataFrame(distance)
     dist.to_csv(path_FCM+str(k)+"/distance.csv", index=False, header=False)
+    print(dist)
     return table
 
 
@@ -99,31 +109,26 @@ def fcm(k):
 
     eps = 0.001
     degree_of_fuzziness = 2
+
+    # хорды
     metrics = pd.read_csv("data/metrics_update.csv")
     OldChordDistribution_metric = metrics['OldChordDistribution']
+    #
+    # dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
+    #
+    # for i in range(0, len(OldChordDistribution_metric)):
+    #     for j in range(0, len(OldChordDistribution_metric[0].split())):
+    #         dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
+    #
+    # dataset_for_PCA = pd.DataFrame(dataset)
+    # dataset_for_PCA.to_csv(path_FCM+str(k)+"/dataset.csv", index=False, header=False)
 
-    dataset = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))
-
-    for i in range(0, len(OldChordDistribution_metric)):
-        for j in range(0, len(OldChordDistribution_metric[0].split())):
-            dataset[j][i] = list(map(float, OldChordDistribution_metric[i][1:-1].split()))[j]
-
-    dataset_for_PCA = pd.DataFrame(dataset)
-    dataset_for_PCA.to_csv(path_FCM+str(k)+"/dataset.csv", index=False, header=False)
+    dataset = pd.read_csv(path_FCM + str(k) + '/dataset.csv', header=None, index_col=None).values
 
     n = len(OldChordDistribution_metric)
     d = len(OldChordDistribution_metric[0].split())
 
-    # датасет для проверки метрик достоверности кластеризации
-    # from ucimlrepo import fetch_ucirepo
-    #
-    # iris = fetch_ucirepo(id=53)
-    #
-    # dataset = iris.data.features.values.transpose()
-    # n = 150
-    # d = 4
-
-    # метрики без хорд
+    # классика
     # metrics = pd.read_csv("data/metrics_update.csv", usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).transpose()
     # dataset_m = pd.DataFrame(metrics)
     # dataset_m.to_csv(path_FCM+str(k)+"/dataset.csv", indexClusterization=False, header=False)
@@ -134,10 +139,24 @@ def fcm(k):
     # d = dataset.shape[0]
     # print(d)
 
+    # датасет для проверки метрик достоверности кластеризации
+    # # from ucimlrepo import fetch_ucirepo
+    # #
+    # # iris = fetch_ucirepo(id=53)
+    # #
+    # # dataset = iris.data.features.values.transpose()
+    # # n = 150
+    # # d = 4
+
     #заполняем таблицу принадлежности случайными значениями
     table_of_accessories = np.random.rand(k, n)
     table_of_accessories /= np.sum(table_of_accessories, axis=0)
 
-    result = solution(k, n, dataset, d, table_of_accessories, degree_of_fuzziness, eps)
+    table_of_accessories = pd.DataFrame(table_of_accessories)
+    table_of_accessories.to_csv(path_FCM+str(k)+"/table_of_accessories.csv", index=False, header=False)
+
+    table_of_accessories_ = pd.read_csv(path_FCM+str(k)+'/table_of_accessories.csv', header=None, index_col=None).values
+
+    result = solution(k, n, dataset, d, table_of_accessories_, degree_of_fuzziness, eps)
     frame_result = pd.DataFrame(result)
     frame_result.to_csv(path_FCM+str(k)+"/FCM.csv", index=False, header=False)

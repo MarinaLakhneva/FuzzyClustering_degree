@@ -2,10 +2,10 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import numpy as geek
 
-path_FCM = "FCM/clusters_"
-path_PCA = "dimensionReduction/PCA/clusters_"
+path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
+path_PCA = "C:/Users/Marina/degree_ML/dimensionReduction/PCA/clusters_"
 
-def p(k):
+def metricPCA(k):
     filename1_in = path_FCM+str(k)+"/cluster_center.csv"
     filename2_in = path_FCM+str(k)+"/dataset.csv"
     filename1_out = path_PCA+str(k)+"/datasetPLUScenter_PCA.csv"
