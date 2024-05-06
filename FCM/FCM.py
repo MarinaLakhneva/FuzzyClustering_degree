@@ -61,8 +61,12 @@ def distance_bhattacharyya(k, n,  data, c_ij):
 
 def solution(k, n, data, d, table, m, E):
     max = 1000
+    dif = []
+    x = []
+    count = 0
 
     while(max > E):
+        count += 1
         coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m)
         # ВЫБЕРИ МЕТОД ПО КОТОРОМУ ВЫЧИСЛЯТЬ РАССТОЯНИЯ
         # distance = distance_calculation(k, n, data, d, coordinates, m)
@@ -76,9 +80,23 @@ def solution(k, n, data, d, table, m, E):
                 if (difference > max):
                     max = difference
         table = affiliation
+        x.append(count)
+        dif.append(max)
 
     dist = pd.DataFrame(distance)
     dist.to_csv(path_FCM+str(k)+"/distance.csv", index=False, header=False)
+
+    # print(count)
+    # print("difference: ", dif)
+
+    # import matplotlib.pyplot as plt
+    # plt.plot(x, dif, 'ro-', alpha=0.6)
+    # plt.grid(True)
+    # plt.title("eps = "+str(E)+", k=3")
+    # plt.xlabel("number iteration", fontweight='bold', fontsize="large")
+    # plt.ylabel("difference", fontweight='bold', fontsize="large")
+    # plt.show()
+
     return table
 
 def fcm(k, dataset, n, d):
@@ -87,15 +105,14 @@ def fcm(k, dataset, n, d):
     eps = 0.001
     degree_of_fuzziness = 2
 
-    #заполняем таблицу принадлежности случайными значениями
-    table_of_accessories = np.random.rand(k, n)
-    table_of_accessories /= np.sum(table_of_accessories, axis=0)
+    # заполняем таблицу принадлежности случайными значениями
+    table_of_accessories_ = np.random.rand(k, n)
+    table_of_accessories_ /= np.sum(table_of_accessories_, axis=0)
 
-    table_of_accessories = pd.DataFrame(table_of_accessories)
-    table_of_accessories.to_csv(path_FCM+str(k)+"/table_of_accessories.csv", index=False, header=False)
+    table_of_accessories_ = pd.DataFrame(table_of_accessories_)
+    table_of_accessories_.to_csv(path_FCM+str(k)+"/table_of_accessories.csv", index=False, header=False)
+    table_of_accessories = pd.read_csv(path_FCM + str(k) + '/table_of_accessories.csv', header=None, index_col=None).values
 
-    table_of_accessories_ = pd.read_csv(path_FCM+str(k)+'/table_of_accessories.csv', header=None, index_col=None).values
-
-    result = solution(k, n, dataset, d, table_of_accessories_, degree_of_fuzziness, eps)
+    result = solution(k, n, dataset, d, table_of_accessories, degree_of_fuzziness, eps)
     frame_result = pd.DataFrame(result)
     frame_result.to_csv(path_FCM+str(k)+"/FCM.csv", index=False, header=False)

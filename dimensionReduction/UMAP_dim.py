@@ -4,9 +4,10 @@ import pandas as pd
 import umap.umap_ as umap
 
 path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
-k = 3
+path = "C:/Users/Marina/degree_ML/data"
+k = 6
 components = 2
-dataset = pd.read_csv(path_FCM+str(k)+'/dataset.csv', header=None, index_col=None).values
+dataset = pd.read_csv(path+'/dataset_gauss.csv', header=None, index_col=None).values
 
 from sklearn.preprocessing import StandardScaler
 
@@ -25,10 +26,10 @@ fig = plt.figure()
 
 # ax = fig.add_subplot(111, projection='3d')
 ax = fig.add_subplot(111)
-# colors = ['#EE0000', '#FF6103', '#FFFF00', '#00FF7F', '#FF34B3', '#4B0082'] #'#008080', - 6
-colors = ['#EE0000', '#FF6103', '#FFFF00']
+colors = ['#EE0000', '#FF6103', '#FFFF00', '#00FF7F', '#FF34B3', '#4B0082'] #'#008080', - 6
 
-result = pd.read_csv(path_FCM + str(k) + '/FCM_.csv', header=None, index_col=None).values
+
+result = pd.read_csv(path_FCM + str(k) + '/FCM.csv', header=None, index_col=None).values
 for t in range(0, k):
  probability = np.zeros(len(result[0]))
  for j in range(0, len(result[0])):
@@ -36,6 +37,6 @@ for t in range(0, k):
  ax.scatter(u[:, 0], u[:, 1], alpha=probability, c=colors[t], s=40, marker='o', edgecolors="black")
  # ax.scatter(u[:, 0], u[:, 1], u[:, 2], alpha=probability, c=colors[t], s=40)
 # ax.view_init(-140, 30)
-# plt.title("The Bhattacharyya distance")
-plt.title("The Euclidean distance")
+plt.title("The Bhattacharyya distance")
+# plt.title("The Euclidean distance")
 plt.show()

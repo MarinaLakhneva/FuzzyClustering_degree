@@ -23,10 +23,15 @@ x = data.transpose()
 
 
 mean_ = np.mean(x, axis=0)
-# print(mean_)
-
 cov_ = np.cov(data, bias=True)
-# print(cov_)
 
-print(np.random.multivariate_normal(mean_, cov_, size=331))
-print(np.random.multivariate_normal(mean_, cov_, size=331).shape)
+
+gauss_ = np.random.multivariate_normal(mean_, cov_, size=331).transpose()
+
+for lst in gauss_:
+    for i, val in enumerate(lst):
+        lst[i] = max(val, 0)
+
+gauss_data = pd.DataFrame(gauss_)
+gauss_data.to_csv("data/dataset_gauss.csv", index=False, header=False)
+print(gauss_)
