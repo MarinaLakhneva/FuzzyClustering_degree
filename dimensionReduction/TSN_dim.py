@@ -7,7 +7,7 @@ path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
 k = 3
 components = 2
 
-dataset = pd.read_csv(path_FCM+str(k)+'/dataset.csv', header=None, index_col=None).values
+dataset = pd.read_csv(path_FCM+str(k)+'/dataset_gauss_C.csv', header=None, index_col=None).values
 
 from sklearn.preprocessing import StandardScaler
 

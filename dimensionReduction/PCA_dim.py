@@ -6,7 +6,7 @@ from dimensionReduction.PCA import metricPCA
 path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
 k = 3
 components = 2
-dataset = pd.read_csv(path_FCM+str(k)+'/dataset.csv', header=None, index_col=None).values
+dataset = pd.read_csv(path_FCM+str(k)+'/dataset_gauss_C.csv', header=None, index_col=None).values
 
 n = dataset.shape[1]
 
@@ -48,8 +48,7 @@ for t in range(0, k):
 center_x = np.zeros(k)
 center_y = np.zeros(k)
 metricPCA(k)
-center = pd.read_csv('C:/Users/Marina/degree_ML/dimensionReduction/PCA/clusters_' + str(k) + '/center_PCA.csv', header=None,
-                     index_col=None).values
+center = pd.read_csv('C:/Users/Marina/degree_ML/dimensionReduction/PCA/clusters_' + str(k) + '/center_PCA.csv', header=None,index_col=None).values
 for t in range(0, k):
     center_x[t] = center[t][0]
     center_y[t] = center[t][1]

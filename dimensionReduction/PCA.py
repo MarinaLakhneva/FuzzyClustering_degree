@@ -7,7 +7,7 @@ path_PCA = "C:/Users/Marina/degree_ML/dimensionReduction/PCA/clusters_"
 
 def metricPCA(k):
     filename1_in = path_FCM+str(k)+"/cluster_center.csv"
-    filename2_in = path_FCM+str(k)+"/dataset.csv"
+    filename2_in = path_FCM+str(k)+"/dataset_gauss_C.csv"
     filename1_out = path_PCA+str(k)+"/datasetPLUScenter_PCA.csv"
     filename2_out = path_PCA+str(k)+"/center_PCA.csv"
 

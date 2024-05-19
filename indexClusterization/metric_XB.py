@@ -1,11 +1,10 @@
 import pandas as pd
 
-path_FCM = "FCM/clusters_"
-path_PCA = "PCA/clusters_"
-
 m_XB = []
 
-def XB(k):
+def XB(k, str_):
+    path_FCM = "FCM/" + str_ + "/clusters_"
+
     for c in range(2, k + 1):
         u = pd.read_csv(path_FCM + str(c) + "/FCM.csv", header=None, index_col=None).values
         distance = pd.read_csv(path_FCM + str(c) + "/distance.csv", header=None, index_col=None).values
@@ -33,5 +32,5 @@ def XB(k):
 
         V_xb = (1/n) * sum/min
         m_XB.append(V_xb)
-    print(m_XB)
+    # print(m_XB)
     return m_XB

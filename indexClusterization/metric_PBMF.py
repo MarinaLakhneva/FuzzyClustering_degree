@@ -1,12 +1,10 @@
 import pandas as pd
-from FCM.FCM import fcm
-
-path_FCM = "FCM/clusters_"
-path_PCA = "PCA/clusters_"
 
 m_PBMF = []
 
-def PBMF(k):
+def PBMF(k, str_):
+    path_FCM = "FCM/" + str_ + "/clusters_"
+
     for c in range(2, k + 1):
         u = pd.read_csv(path_FCM + str(c) + "/FCM.csv", header=None, index_col=None).values
         distance = pd.read_csv(path_FCM + str(c) + "/distance.csv", header=None, index_col=None).values
@@ -40,5 +38,5 @@ def PBMF(k):
 
         V_pbmf = (1/k) * (E1 * max)/sum
         m_PBMF.append(V_pbmf)
-    print(m_PBMF)
+    # print(m_PBMF)
     return m_PBMF

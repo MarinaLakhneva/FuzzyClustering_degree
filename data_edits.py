@@ -5,7 +5,7 @@ import pandas as pd
 metrics = pd.read_csv("data/metrics_update.csv")
 OldChordDistribution_metric = metrics['OldChordDistribution']
 
-dataset = pd.read_csv('data/dataset_gauss.csv', header=None, index_col=None).values
+dataset = pd.read_csv('data/dataset.csv', header=None, index_col=None).values
 
 n = len(OldChordDistribution_metric)
 d = len(OldChordDistribution_metric[0].split())

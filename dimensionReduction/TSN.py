@@ -8,7 +8,7 @@ path_TSN = "C:/Users/Marina/degree_ML/dimensionReduction/TSN/clusters_"
 
 def metricTSN(k):
     filename1_in = path_FCM+str(k)+"/cluster_center.csv"
-    filename2_in = path_FCM+str(k)+"/dataset.csv"
+    filename2_in = path_FCM+str(k)+"/dataset_gauss_C.csv"
     filename1_out = path_TSN+str(k)+"/datasetPLUScenter_TSN.csv"
     filename2_out = path_TSN+str(k)+"/center_TSN.csv"
 

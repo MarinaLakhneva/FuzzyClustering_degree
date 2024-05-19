@@ -5,7 +5,7 @@ import pandas as pd
 # d - размерность вектора данных 1<l<d
 # n - мощность выборки
 
-path_FCM = "FCM/clusters_"
+path_accessories = "FCM/accessories/clusters_"
 
 def calculating_the_degree_of_affiliation(k, n, m, dist):
     u_ij = np.zeros((k, n))
@@ -17,10 +17,9 @@ def calculating_the_degree_of_affiliation(k, n, m, dist):
             for t in range(0, k):
                 sum += (dist[j][i]/dist[t][i])**2
             u_ij[j][i] = sum**extent
-
     return u_ij
 
-def calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m):
+def calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m, path_FCM):
     c_jl = np.zeros((d, k))
 
     for j in range(0, k):
@@ -59,7 +58,7 @@ def distance_bhattacharyya(k, n,  data, c_ij):
             dist[j][i] = res
     return dist
 
-def solution(k, n, data, d, table, m, E):
+def solution(k, n, data, d, table, m, E, path_FCM):
     max = 1000
     dif = []
     x = []
@@ -67,7 +66,7 @@ def solution(k, n, data, d, table, m, E):
 
     while(max > E):
         count += 1
-        coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m)
+        coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m, path_FCM)
         # ВЫБЕРИ МЕТОД ПО КОТОРОМУ ВЫЧИСЛЯТЬ РАССТОЯНИЯ
         # distance = distance_calculation(k, n, data, d, coordinates, m)
         distance = distance_bhattacharyya(k, n, data, coordinates)
@@ -84,7 +83,7 @@ def solution(k, n, data, d, table, m, E):
         dif.append(max)
 
     dist = pd.DataFrame(distance)
-    dist.to_csv(path_FCM+str(k)+"/distance.csv", index=False, header=False)
+    dist.to_csv(path_FCM + str(k) + "/distance.csv", index=False, header=False)
 
     # print(count)
     # print("difference: ", dif)
@@ -99,20 +98,22 @@ def solution(k, n, data, d, table, m, E):
 
     return table
 
-def fcm(k, dataset, n, d):
+def fcm(k, dataset, n, d, str_):
     print(k)
+    path_FCM = "FCM/" + str_ + "/clusters_"
 
     eps = 0.001
     degree_of_fuzziness = 2
 
     # заполняем таблицу принадлежности случайными значениями
-    table_of_accessories_ = np.random.rand(k, n)
-    table_of_accessories_ /= np.sum(table_of_accessories_, axis=0)
+    # table_of_accessories_ = np.random.rand(k, n)
+    # table_of_accessories_ /= np.sum(table_of_accessories_, axis=0)
+    #
+    # table_of_accessories_ = pd.DataFrame(table_of_accessories_)
+    # table_of_accessories_.to_csv(path_accessories+str(k)+"/table_of_accessories.csv", index=False, header=False)
 
-    table_of_accessories_ = pd.DataFrame(table_of_accessories_)
-    table_of_accessories_.to_csv(path_FCM+str(k)+"/table_of_accessories.csv", index=False, header=False)
-    table_of_accessories = pd.read_csv(path_FCM + str(k) + '/table_of_accessories.csv', header=None, index_col=None).values
+    table_of_accessories = pd.read_csv(path_accessories + str(k) + '/table_of_accessories.csv', header=None, index_col=None).values
 
-    result = solution(k, n, dataset, d, table_of_accessories, degree_of_fuzziness, eps)
+    result = solution(k, n, dataset, d, table_of_accessories, degree_of_fuzziness, eps, path_FCM)
     frame_result = pd.DataFrame(result)
-    frame_result.to_csv(path_FCM+str(k)+"/FCM.csv", index=False, header=False)
+    frame_result.to_csv(path_FCM + str(k) + "/FCM.csv", index=False, header=False)

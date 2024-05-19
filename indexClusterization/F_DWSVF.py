@@ -1,6 +1,3 @@
-path_FCM = "FCM/clusters_"
-path_PCA = "PCA/clusters_"
-
 def DWSVF(k, XB, PBMF, MPC):
     m_DWSVF = []
 

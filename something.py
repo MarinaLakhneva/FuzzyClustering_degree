@@ -13,3 +13,16 @@
 #
 # frame_ambiguity = pd.DataFrame(ambiguity)
 # frame_ambiguity.to_csv('ambiguityClasters.csv', indexClusterization=False, header=False)
+
+# import numpy as np
+# matrix = np.array([[1, 2, 3],
+#                    [4, 5, 6],
+#                    [7, 8, 9]])
+#
+# # Массив индексов для перестановки столбцов
+# new_order = [2, 0, 1]
+#
+# # Переставляем столбцы в соответствии с новым порядком
+# matrix_permuted = matrix[:, new_order]
+#
+# print(matrix_permuted)

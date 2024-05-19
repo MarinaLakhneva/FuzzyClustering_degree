@@ -1,13 +1,9 @@
 import pandas as pd
-from FCM.FCM import fcm
 
-path_FCM = "FCM/clusters_"
-
-eb = []
-
-def elbow(k):
+def elbow(k, str_):
+    eb = []
     for c in range(2, k+1):
-        dist = pd.read_csv(path_FCM + str(c) + "/distance.csv", header=None, index_col=None).values
+        dist = pd.read_csv("FCM/" + str_ + "/clusters_" + str(c) + "/distance.csv", header=None, index_col=None).values
         n = len(dist[0])
 
         dict = {
