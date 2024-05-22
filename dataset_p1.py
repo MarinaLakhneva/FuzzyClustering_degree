@@ -10,7 +10,7 @@ str_ = "chords/dataset"
 # str_ = "classic/dataset_gauss_C"
 
 #chords
-metrics = pd.read_csv("data/metrics_update.csv")
+metrics = pd.read_csv("data/metrics_update_drop.csv")
 OldChordDistribution_metric = metrics['OldChordDistribution']
 
 dataset_gauss_C = np.zeros((len(OldChordDistribution_metric[0].split()), len(OldChordDistribution_metric)))

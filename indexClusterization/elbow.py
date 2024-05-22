@@ -3,7 +3,7 @@ import pandas as pd
 def elbow(k, str_):
     eb = []
     for c in range(2, k+1):
-        dist = pd.read_csv("FCM/" + str_ + "/clusters_" + str(c) + "/distance.csv", header=None, index_col=None).values
+        dist = pd.read_csv("FCM/" + str_ + "C/clusters_" + str(c) + "/distance.csv", header=None, index_col=None).values
         n = len(dist[0])
 
         dict = {

@@ -164,6 +164,8 @@ def clearСlustering(k, n, result, dataset_11, str_):
     cluster6_num = []
     cluster7 = []
     cluster7_num = []
+    cluster8 = []
+    cluster8_num = []
 
     cluster_num = -1
     for i in range(0, n):
@@ -193,6 +195,9 @@ def clearСlustering(k, n, result, dataset_11, str_):
         elif cluster_num == 6:
             cluster7.append(max_m)
             cluster7_num.append(i)
+        elif cluster_num == 7:
+            cluster8.append(max_m)
+            cluster8_num.append(i)
 
     # print("1", len(cluster1_num))
     # print(cluster1)
@@ -221,79 +226,83 @@ def clearСlustering(k, n, result, dataset_11, str_):
     # print("7", len(cluster7_num))
     # print(cluster7)
     # print(cluster7_num)
-    #
-    # print(len(cluster1_num)+len(cluster2_num)+len(cluster3_num)+
-    #       len(cluster4_num)+len(cluster5_num)+len(cluster6_num)+len(cluster7_num))
-    #
-    # for met in range(0, 11):
-    #     met_11_1 = []
-    #     met_11_2 = []
-    #     met_11_3 = []
-    #     met_11_4 = []
-    #     met_11_5 = []
-    #     met_11_6 = []
-    #     met_11_7 = []
-    #     for n_11 in range(0, len(cluster1_num)):
-    #         arr = [dataset_11[met, cluster1_num[n_11]]]
-    #         met_11_1 = np.concatenate((met_11_1, arr))
-    #     for n_11 in range(0, len(cluster2_num)):
-    #         arr = [dataset_11[met, cluster2_num[n_11]]]
-    #         met_11_2 = np.concatenate((met_11_2, arr))
-    #     for n_11 in range(0, len(cluster3_num)):
-    #         arr = [dataset_11[met, cluster3_num[n_11]]]
-    #         met_11_3 = np.concatenate((met_11_3, arr))
-    #     for n_11 in range(0, len(cluster4_num)):
-    #         arr = [dataset_11[met, cluster4_num[n_11]]]
-    #         met_11_4 = np.concatenate((met_11_4, arr))
-    #     for n_11 in range(0, len(cluster5_num)):
-    #         arr = [dataset_11[met, cluster5_num[n_11]]]
-    #         met_11_5 = np.concatenate((met_11_5, arr))
-    #     for n_11 in range(0, len(cluster6_num)):
-    #         arr = [dataset_11[met, cluster6_num[n_11]]]
-    #         met_11_6 = np.concatenate((met_11_6, arr))
-    #     for n_11 in range(0, len(cluster7_num)):
-    #         arr = [dataset_11[met, cluster7_num[n_11]]]
-    #         met_11_7 = np.concatenate((met_11_7, arr))
-    #
-    #     my_dict = {' 1': met_11_1, ' 2': met_11_2, ' 3': met_11_3,
-    #                ' 4': met_11_4, ' 5': met_11_5, ' 6': met_11_6}
-    #     title = ["OpenAngle", "CVD", "AverageDistance", "LengthVolumeRatio", "LengthAreaRatio",
-    #             "JunctionArea", "Length", "Area", "Volume", "ConvexHullVolume", "ConvexHullRatio"]
-    #
-    #
-    #     fig, ax = plt.subplots()
-    #     ax.boxplot(my_dict.values())
-    #     plt.title(title[met])
-    #     ax.set_xticklabels(my_dict.keys())
-    #     plt.savefig("/Users/Marina/degree_ML/boxPlot/" + str_ + "/" + str(met+1) + ".png")
-    #     plt.show()
 
-    impotant = []
-    for o in range(0, 3):
-        max__ = 0.0
-        count_ = 0
-        for p in range(0, len(cluster1)):
-            if(cluster1[p] > max__):
-                max__ = cluster1[p]
-                count_ = p
-        print(max__)
-        impotant.append(cluster1_num[count_])
-        cluster1.pop(count_)
-        cluster1_num.pop(count_)
-    print(impotant)
-    print(spike[impotant[0]])
-    print(spike[impotant[1]])
-    print(spike[impotant[2]])
-    print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
+    print(len(cluster1_num)+len(cluster2_num)+len(cluster3_num)+
+          len(cluster4_num)+len(cluster5_num)+len(cluster6_num)+len(cluster7_num)+len(cluster8_num))
+
+    for met in range(0, 11):
+        met_11_1 = []
+        met_11_2 = []
+        met_11_3 = []
+        met_11_4 = []
+        met_11_5 = []
+        met_11_6 = []
+        met_11_7 = []
+        met_11_8 = []
+        for n_11 in range(0, len(cluster1_num)):
+            arr = [dataset_11[met, cluster1_num[n_11]]]
+            met_11_1 = np.concatenate((met_11_1, arr))
+        for n_11 in range(0, len(cluster2_num)):
+            arr = [dataset_11[met, cluster2_num[n_11]]]
+            met_11_2 = np.concatenate((met_11_2, arr))
+        for n_11 in range(0, len(cluster3_num)):
+            arr = [dataset_11[met, cluster3_num[n_11]]]
+            met_11_3 = np.concatenate((met_11_3, arr))
+        for n_11 in range(0, len(cluster4_num)):
+            arr = [dataset_11[met, cluster4_num[n_11]]]
+            met_11_4 = np.concatenate((met_11_4, arr))
+        for n_11 in range(0, len(cluster5_num)):
+            arr = [dataset_11[met, cluster5_num[n_11]]]
+            met_11_5 = np.concatenate((met_11_5, arr))
+        for n_11 in range(0, len(cluster6_num)):
+            arr = [dataset_11[met, cluster6_num[n_11]]]
+            met_11_6 = np.concatenate((met_11_6, arr))
+        for n_11 in range(0, len(cluster7_num)):
+            arr = [dataset_11[met, cluster7_num[n_11]]]
+            met_11_7 = np.concatenate((met_11_7, arr))
+        for n_11 in range(0, len(cluster8_num)):
+            arr = [dataset_11[met, cluster8_num[n_11]]]
+            met_11_8 = np.concatenate((met_11_8, arr))
+
+        my_dict = {' 1': met_11_1, ' 2': met_11_2, ' 3': met_11_3,
+                   ' 4': met_11_4, ' 5': met_11_5, '6': met_11_6, '7': met_11_7, '8': met_11_8}
+        title = ["OpenAngle", "CVD", "AverageDistance", "LengthVolumeRatio", "LengthAreaRatio",
+                "JunctionArea", "Length", "Area", "Volume", "ConvexHullVolume", "ConvexHullRatio"]
 
 
+        fig, ax = plt.subplots()
+        ax.boxplot(my_dict.values())
+        plt.title(title[met])
+        ax.set_xticklabels(my_dict.keys())
+        plt.savefig("/Users/Marina/degree_ML/boxPlot/" + str_ + "/" + str(met+1) + ".png")
+        plt.show()
 
-k = 6
+    # impotant = []
+    # for o in range(0, 3):
+    #     max__ = 0.0
+    #     count_ = 0
+    #     for p in range(0, len(cluster1)):
+    #         if(cluster1[p] > max__):
+    #             max__ = cluster1[p]
+    #             count_ = p
+    #     print(max__)
+    #     impotant.append(cluster1_num[count_])
+    #     cluster1.pop(count_)
+    #     cluster1_num.pop(count_)
+    # print(impotant)
+    # print(spike[impotant[0]])
+    # print(spike[impotant[1]])
+    # print(spike[impotant[2]])
+    # print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
 
-# _str_ = "chords"
-_str_ = "classic"
+
+
+k = 8
+
+_str_ = "chords"
+# _str_ = "classic"
 
 str_ = _str_ + "/dataset"
 # str_ = _str_ + "/dataset_gauss"
@@ -303,6 +312,7 @@ path_FCM = "C:/Users/Marina/degree_ML/FCM/" + str_ + "/clusters_"
 path = "C:/Users/Marina/degree_ML/data/dataset/" + str_ + ".csv"
 
 dataset = pd.read_csv(path, header=None, index_col=None).values
+print(dataset.shape)
 n = dataset.shape[1]
 
 result = pd.read_csv(path_FCM+str(k)+'/FCM.csv', header=None, index_col=None).values

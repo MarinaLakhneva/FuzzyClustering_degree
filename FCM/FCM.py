@@ -100,7 +100,7 @@ def solution(k, n, data, d, table, m, E, path_FCM):
 
 def fcm(k, dataset, n, d, str_):
     print(k)
-    path_FCM = "FCM/" + str_ + "/clusters_"
+    path_FCM = "FCM/" + str_ + "C/clusters_"
 
     eps = 0.001
     degree_of_fuzziness = 2
