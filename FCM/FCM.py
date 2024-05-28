@@ -68,8 +68,8 @@ def solution(k, n, data, d, table, m, E, path_FCM):
         count += 1
         coordinates = calculating_the_coordinates_of_the_cluster_center(k, n, data, d, table, m, path_FCM)
         # ВЫБЕРИ МЕТОД ПО КОТОРОМУ ВЫЧИСЛЯТЬ РАССТОЯНИЯ
-        # distance = distance_calculation(k, n, data, d, coordinates, m)
-        distance = distance_bhattacharyya(k, n, data, coordinates)
+        distance = distance_calculation(k, n, data, d, coordinates, m)
+        # distance = distance_bhattacharyya(k, n, data, coordinates)
         affiliation = calculating_the_degree_of_affiliation(k, n, m, distance)
 
         max = 0.0
@@ -108,7 +108,6 @@ def fcm(k, dataset, n, d, str_):
     # заполняем таблицу принадлежности случайными значениями
     # table_of_accessories_ = np.random.rand(k, n)
     # table_of_accessories_ /= np.sum(table_of_accessories_, axis=0)
-    #
     # table_of_accessories_ = pd.DataFrame(table_of_accessories_)
     # table_of_accessories_.to_csv(path_accessories+str(k)+"/table_of_accessories.csv", index=False, header=False)
 
