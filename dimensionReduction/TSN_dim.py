@@ -3,11 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from dimensionReduction.TSN import metricTSN
 
-path_FCM = "C:/Users/Marina/degree_ML/FCM/clusters_"
-k = 3
-components = 2
+str_ = "chords/dataset"
+# str_ = "classic/dataset"
 
-dataset = pd.read_csv(path_FCM+str(k)+'/dataset_gauss_C.csv', header=None, index_col=None).values
+path_FCM = "C:/Users/Marina/degree_ML/FCM/" + str_ + "/clusters_"
+path = "C:/Users/Marina/degree_ML/data/dataset/" + str_ + ".csv"
+
+k = 7
+components = 2
+dataset = pd.read_csv(path, header=None, index_col=None).values
 
 from sklearn.preprocessing import StandardScaler
 
@@ -22,9 +26,8 @@ principalComponents = tsne.fit_transform(data)
 Xax = principalComponents[:, 0]
 Yax = principalComponents[:, 1]
 # Zax = principalComponents[:, 2]
-#
-# colors = ['#EE0000', '#FF6103', '#FFFF00', '#00FF7F', '#FF34B3', '#008080', '#4B0082'] # '#008080', - 6
-colors = ['#EE0000', '#FF6103', '#FFFF00']
+
+colors = ['#f00', '#0f0', '#ff3bb0', '#ff0', '#800080', '#008080', '#1ae4ff']
 
 fig = plt.figure(figsize=(7, 5))
 # ax = fig.add_subplot(111, projection='3d')
@@ -39,9 +42,8 @@ for t in range(0, k):
  ax.scatter(Xax, Yax, s=40, alpha=probability, c=colors[t],  marker='o', edgecolors="black")
  # ax.scatter(Xax, Yax, Zax, s=40, alpha=probability, c=colors[t], marker='o', edgecolors="black")
 
-plt.title("The Bhattacharyya distance")
-# plt.title("The Euclidean distance")
-ax.legend(["1", "2", "3"])
+
+ax.legend(["1", "2", "3", "4", "5", "6", "7"])
 for t in range(0, k):
     ax.get_legend().legend_handles[t].set_alpha(1)
 

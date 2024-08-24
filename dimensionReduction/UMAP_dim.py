@@ -38,8 +38,10 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 colors = ['#f00', '#0f0', '#ff3bb0', '#ff0', '#800080', '#1ae4ff'] #, '#ff7b00' - 8 '#008080', - 6
 
-result = pd.read_csv(path_accessories + str(k) + '/table_of_accessories.csv', header=None, index_col=None).values
-# result = pd.read_csv(path_FCM + str(k) + '/FCM.csv', header=None, index_col=None).values
+# result = pd.read_csv(path_accessories + str(k) + '/table_of_accessories.csv', header=None, index_col=None).values
+result = pd.read_csv(path_FCM + str(k) + '/FCM.csv', header=None, index_col=None).values
+# no = [23, 35, 51, 67, 71, 80, 101, 116, 129, 175, 196, 206, 209, 274, 303, 313]
+no = [139]
 for t in range(0, k):
     probability = np.zeros(len(result[0]))
     for j in range(0, len(result[0])):
@@ -47,8 +49,10 @@ for t in range(0, k):
     ax.scatter(_u_[:, 0], _u_[:, 1], alpha=probability, c=colors[t], s=40, marker='o', edgecolors="black")
     # ax.scatter(u[:, 0], u[:, 1], u[:, 2], alpha=probability, c=colors[t], s=40)
 # ax.view_init(-140, 30)
+
 ax.legend(["1", "2", "3", "4", "5", "6"])
 for t in range(0, k):
     ax.get_legend().legend_handles[t].set_alpha(1)
-plt.savefig("C:/Users/Marina/degree_ML/pic/" + str_ + "/umap0.png")
+# plt.savefig("C:/Users/Marina/degree_ML/pic/" + str_ + "/umap0.png")
+ax.scatter(_u_[no, 0], _u_[no, 1], c="black", s=40, marker='o', edgecolors="red")
 plt.show()

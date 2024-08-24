@@ -268,38 +268,158 @@ def clearСlustering(k, n, result, dataset_11, str_):
         #     arr = [dataset_11[met, cluster8_num[n_11]]]
         #     met_11_8 = np.concatenate((met_11_8, arr))
 
-        # my_dict = {' 1': met_11_1, ' 2': met_11_2, ' 3': met_11_3,
-        #            ' 4': met_11_4, ' 5': met_11_5, '6': met_11_6}
-        # title = ["OpenAngle", "CVD", "AverageDistance", "LengthVolumeRatio", "LengthAreaRatio",
-        #         "JunctionArea", "Length", "Area", "Volume", "ConvexHullVolume", "ConvexHullRatio"]
-        #
-        #
-        # fig, ax = plt.subplots()
-        # ax.boxplot(my_dict.values())
-        # plt.title(title[met])
-        # ax.set_xticklabels(my_dict.keys())
-        # plt.savefig("/Users/Marina/degree_ML/boxPlot/" + str_ + "/" + str(met+1) + ".png")
-        # plt.show()
+        my_dict = {' 1': met_11_1, ' 2': met_11_2, ' 3': met_11_3,
+                   ' 4': met_11_4, ' 5': met_11_5, '6': met_11_6}
+        title = ["OpenAngle", "CVD", "AverageDistance", "LengthVolumeRatio", "LengthAreaRatio",
+                "JunctionArea", "Length", "Area", "Volume", "ConvexHullVolume", "ConvexHullRatio"]
 
-    impotant = []
-    for o in range(0, 3):
-        max__ = 0.0
-        count_ = 0
-        for p in range(0, len(cluster6)):
-            if(cluster6[p] > max__):
-                max__ = cluster6[p]
-                count_ = p
-        print(max__)
-        impotant.append(cluster6_num[count_])
-        cluster6.pop(count_)
-        cluster6_num.pop(count_)
-    print(impotant)
-    print(spike[impotant[0]])
-    print(spike[impotant[1]])
-    print(spike[impotant[2]])
-    print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
-    print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
+
+        fig, ax = plt.subplots()
+        ax.boxplot(my_dict.values())
+        plt.title(title[met])
+        ax.set_xticklabels(my_dict.keys())
+        plt.savefig("/Users/Marina/degree_ML/boxPlot/" + str_ + "/" + str(met+1) + ".png")
+        plt.show()
+
+    # impotant = []
+    # for o in range(0, 3):
+    #     max__ = 0.0
+    #     count_ = 0
+    #     for p in range(0, len(cluster6)):
+    #         if(cluster6[p] > max__):
+    #             max__ = cluster6[p]
+    #             count_ = p
+    #     print(max__)
+    #     impotant.append(cluster6_num[count_])
+    #     cluster6.pop(count_)
+    #     cluster6_num.pop(count_)
+    # print(impotant)
+    # print(spike[impotant[0]])
+    # print(spike[impotant[1]])
+    # print(spike[impotant[2]])
+    # print([dataset_11[g, impotant[0]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[1]] for g in range(dataset_11.shape[0])])
+    # print([dataset_11[g, impotant[2]] for g in range(dataset_11.shape[0])])
+
+def clusteringMetrics(k, n, result, dataset_11, str_):
+    cluster1 = []
+    cluster1_num = []
+    cluster2 = []
+    cluster2_num = []
+    cluster3 = []
+    cluster3_num = []
+    cluster4 = []
+    cluster4_num = []
+    cluster5 = []
+    cluster5_num = []
+    cluster6 = []
+    cluster6_num = []
+
+
+    cluster_num = -1
+    for i in range(0, n):
+        max_m = 0.0
+        for j in range(0, k):
+            if (max_m < result[j][i]):
+                max_m = result[j][i]
+                cluster_num = j
+        if cluster_num == 0:
+            cluster1.append(max_m)
+            cluster1_num.append(i)
+        elif cluster_num == 1:
+            cluster2.append(max_m)
+            cluster2_num.append(i)
+        elif cluster_num == 2:
+            cluster3.append(max_m)
+            cluster3_num.append(i)
+        elif cluster_num == 3:
+            cluster4.append(max_m)
+            cluster4_num.append(i)
+        elif cluster_num == 4:
+            cluster5.append(max_m)
+            cluster5_num.append(i)
+        elif cluster_num == 5:
+            cluster6.append(max_m)
+            cluster6_num.append(i)
+
+    met_11_1 = []
+    met_11_2 = []
+    met_11_3 = []
+    met_11_4 = []
+    met_11_5 = []
+    met_11_6 = []
+    met_11_7 = []
+    met_11_8 = []
+    met_11_9 = []
+    met_11_10 = []
+    met_11_11 = []
+
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[0, cluster1_num[n_11]]]
+        met_11_1 = np.concatenate((met_11_1, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[1, cluster1_num[n_11]]]
+        met_11_2 = np.concatenate((met_11_2, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[2, cluster1_num[n_11]]]
+        met_11_3 = np.concatenate((met_11_3, arr))
+    # for n_11 in range(0, len(cluster6_num)):
+    #     arr = [dataset_11[3, cluster6_num[n_11]]]
+    #     met_11_4 = np.concatenate((met_11_4, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[4, cluster1_num[n_11]]]
+        met_11_5 = np.concatenate((met_11_5, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[5, cluster1_num[n_11]]]
+        met_11_6 = np.concatenate((met_11_6, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[6, cluster1_num[n_11]]]
+        met_11_7 = np.concatenate((met_11_7, arr))
+    # for n_11 in range(0, len(cluster6_num)):
+    #     arr = [dataset_11[7, cluster6_num[n_11]]]
+    #     met_11_8 = np.concatenate((met_11_8, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[8, cluster1_num[n_11]]]
+        met_11_9 = np.concatenate((met_11_9, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[9, cluster1_num[n_11]]]
+        met_11_10 = np.concatenate((met_11_10, arr))
+    for n_11 in range(0, len(cluster1_num)):
+        arr = [dataset_11[10, cluster1_num[n_11]]]
+        met_11_11 = np.concatenate((met_11_11, arr))
+
+
+    my_dict = {' OA': met_11_1, ' CVD': met_11_2, ' AD': met_11_3,
+                ' LAR': met_11_5, 'JA': met_11_6,
+               'L': met_11_7, 'V': met_11_9, 'CHV': met_11_10,
+               'CHR': met_11_11}
+    title = ['Кластер №1']
+
+    fig, ax = plt.subplots()
+    ax.boxplot(my_dict.values())
+    plt.title(title[0])
+    ax.set_xticklabels(my_dict.keys())
+    ax.set_ylim(0, 5)
+    # plt.savefig("/Users/Marina/degree_ML/boxPlot/" + str_ + "/k" + str(6) + ".png")
+    plt.show()
+
+def errorRealization(k, n, result_my, result):
+    error_realization = []
+    max_error = 0
+    for i in range(0, n):
+        for j in range(0, k):
+            err_result = abs(result[j][i]-result_my[j][i])
+            if(err_result > max_error):
+                max_error = err_result/100
+        error_realization.append(max_error)
+    print(error_realization)
+
+    x = np.arange(1, 330)
+    plt.plot(x, error_realization, 'ro-', alpha=0.6)
+    plt.grid(True)
+    plt.xlabel("номер точки в наборе данных", fontweight='bold', fontsize=14)
+    plt.ylabel("максимальная ошибка", fontweight='bold', fontsize=14)
+    plt.show()
 
 
 
@@ -319,7 +439,7 @@ dataset = pd.read_csv(path, header=None, index_col=None).values
 print(dataset.shape)
 n = dataset.shape[1]
 
-result = pd.read_csv(path_FCM+str(k)+'/FCM.csv', header=None, index_col=None).values
+# result = pd.read_csv(path_FCM+str(k)+'/FCM.csv', header=None, index_col=None).values
 
 metrics_spike = pd.read_csv("data/metrics_true.csv")
 spike = metrics_spike['Spine File']
@@ -332,4 +452,10 @@ dataset11 = pd.read_csv('data/dataset11.csv', header=None, index_col=None).value
 # ambiguitySpikes(k, n, result, dataset11, spike)
 # probability_40_70_80_90(k, n, result)
 # minMax_membership(k, n, spike, result)
-clearСlustering(k, n, result, dataset11, str_)
+# clearСlustering(k, n, result, dataset11, str_)
+# clusteringMetrics(k, n, result, dataset11, str_)
+
+
+result = pd.read_csv(path_FCM+str(k)+'/FCM_pypypy.csv', header=None, index_col=None).values
+result_sk = pd.read_csv(path_FCM+str(k)+'/FCM_cMEANS.csv', header=None, index_col=None).values
+errorRealization(k, n, result, result_sk)

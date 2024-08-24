@@ -81,7 +81,8 @@ def solution(k, n, data, d, table, m, E, path_FCM):
         table = affiliation
         x.append(count)
         dif.append(max)
-
+    print(count)
+    print(x)
     dist = pd.DataFrame(distance)
     dist.to_csv(path_FCM + str(k) + "/distance.csv", index=False, header=False)
 
@@ -100,7 +101,7 @@ def solution(k, n, data, d, table, m, E, path_FCM):
 
 def fcm(k, dataset, n, d, str_):
     print(k)
-    path_FCM = "FCM/" + str_ + "C/clusters_"
+    path_FCM = "FCM/" + str_ + "/clusters_"
 
     eps = 0.001
     degree_of_fuzziness = 2
@@ -115,4 +116,4 @@ def fcm(k, dataset, n, d, str_):
 
     result = solution(k, n, dataset, d, table_of_accessories, degree_of_fuzziness, eps, path_FCM)
     frame_result = pd.DataFrame(result)
-    frame_result.to_csv(path_FCM + str(k) + "/FCM.csv", index=False, header=False)
+    frame_result.to_csv(path_FCM + str(k) + "/FCM_pypypy.csv", index=False, header=False)
